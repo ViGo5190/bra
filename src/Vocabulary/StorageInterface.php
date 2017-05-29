@@ -36,4 +36,11 @@ interface StorageInterface
      * @return bool
      */
     public function isWordInStorage(string $word): bool;
+
+    /**
+     * return max length word
+     *
+     * @return int
+     */
+    public function getMaxLengthWord(): int;
 }

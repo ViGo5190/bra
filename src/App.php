@@ -38,7 +38,9 @@ class App
         $totalDistance = 0;
 
         foreach ($this->inputStorage->getAllWords() as $inputWord) {
-            $totalDistance += $this->distanceCalculator->getDistance($inputWord);
+            $result = $this->distanceCalculator->getDistance($inputWord);
+            echo $inputWord . ' - ' . $result . PHP_EOL;
+            $totalDistance += $result;
         }
 
         return $totalDistance;

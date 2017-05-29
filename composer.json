@@ -11,5 +11,13 @@
   ],
   "autoload": {
     "psr-4": {"Vigo5190\\": "src/"}
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Vigo5190\\": "tests/"
+    }
+  }
+  "require-dev": {
+    "phpunit/phpunit": "^6.1"
   }
 }

@@ -7,15 +7,21 @@ abstract class AbstractStorage implements StorageInterface
 {
     protected $storage = [];
 
+    protected $maxLengthWord = 0;
+
     /**
      * @inheritdoc
      */
     public function addWord(string $word)
     {
         $clearedWord = Helper::clearWord($word);
+        $clearedWordLength = strlen($clearedWord);
 
-        if ($clearedWord != '') {
+        if ($clearedWordLength > 0) {
             $this->storage[] = $clearedWord;
+            if ($clearedWordLength > $this->maxLengthWord) {
+                $this->maxLengthWord = $clearedWordLength;
+            }
         }
     }
 
@@ -42,6 +48,14 @@ abstract class AbstractStorage implements StorageInterface
     public function getWordsWithSpecificSizeOrDelta(int $size, int $delta): array
     {
         throw new \Exception('Method not implemented');
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getMaxLengthWord(): int
+    {
+        return $this->maxLengthWord;
     }
 
 }

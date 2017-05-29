@@ -33,11 +33,9 @@ class InputReader
             throw new \Exception("Source did not set");
         }
 
-
         $buffer = fgets($this->handle);
         $words = explode(' ', $buffer);
 
-        asort($words);
         foreach ($words as $word) {
             $this->storage->addWord($word);
         }

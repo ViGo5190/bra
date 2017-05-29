@@ -26,7 +26,7 @@ class FileLoader implements LoaderInterface
             throw new \Exception("Source did not set");
         }
 
-        while (($buffer = fgets($this->handle, 4096)) !== false) {
+        while (($buffer = fgets($this->handle)) !== false) {
             $this->storage->addWord($buffer);
         }
         if (!feof($this->handle)) {
@@ -48,6 +48,4 @@ class FileLoader implements LoaderInterface
 
         return $this;
     }
-
-
 }

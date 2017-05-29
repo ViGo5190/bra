@@ -10,9 +10,13 @@ class HashStorage extends AbstractStorage
     public function addWord(string $word)
     {
         $clearedWord = Helper::clearWord($word);
+        $clearedWordLength = strlen($clearedWord);
 
-        if ($clearedWord != '') {
+        if ($clearedWordLength > 0) {
             $this->storage[$clearedWord] = $clearedWord;
+            if ($clearedWordLength > $this->maxLengthWord) {
+                $this->maxLengthWord = $clearedWordLength;
+            }
         }
     }
 

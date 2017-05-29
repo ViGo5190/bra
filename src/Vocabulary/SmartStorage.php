@@ -10,13 +10,17 @@ class SmartStorage extends AbstractStorage
     public function addWord(string $word)
     {
         $clearedWord = Helper::clearWord($word);
+        $clearedWordLength = strlen($clearedWord);
 
-        if ($clearedWord != '') {
+        if ($clearedWordLength > 0) {
             $length = strlen($clearedWord);
             if (!array_key_exists($length, $this->storage)) {
                 $this->storage[$length] = [];
             }
             $this->storage[$length][$clearedWord] = $clearedWord;
+            if ($clearedWordLength > $this->maxLengthWord) {
+                $this->maxLengthWord = $clearedWordLength;
+            }
         }
     }
 
@@ -35,6 +39,9 @@ class SmartStorage extends AbstractStorage
      */
     public function getAllWords(): array
     {
+        if (count($this->storage) === 0) {
+            return [];
+        }
         $allWords = array_merge(...$this->storage);
         return $allWords;
     }
@@ -48,18 +55,13 @@ class SmartStorage extends AbstractStorage
 
         if ($delta === 0 && array_key_exists($length, $this->storage)) {
             $words = array_merge($words, $this->storage[$length]);
-        } else if ($delta > 0 && $delta <= $length) {
-            if (array_key_exists($length-$delta, $this->storage)) {
-                $words = array_merge($words, $this->storage[$length-$delta]);
+        } else if ($delta > 0) {
+            if (array_key_exists($length - $delta, $this->storage)) {
+                $words = array_merge($words, $this->storage[$length - $delta]);
             }
-            if (array_key_exists($length+$delta, $this->storage)) {
-                $words = array_merge($words, $this->storage[$length+$delta]);
+            if (array_key_exists($length + $delta, $this->storage)) {
+                $words = array_merge($words, $this->storage[$length + $delta]);
             }
-//            for ($i = $length - $delta; $i <= $length + $delta; $i++) {
-//                if (array_key_exists($i, $this->storage)) {
-//                    $words = array_merge($words, $this->storage[$i]);
-//                }
-//            }
         }
 
         return $words;
