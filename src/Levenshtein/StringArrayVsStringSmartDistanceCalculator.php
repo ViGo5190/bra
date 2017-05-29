@@ -46,18 +46,16 @@ class StringArrayVsStringSmartDistanceCalculator implements DistanceCalculatorIn
 
                 if ($lev === 1) {
                     $shortest = 1;
-                    $w = $vocabularyItem;
                     break;
                 }
 
                 if ($lev < $shortest || $shortest < 0) {
-                    $w = $vocabularyItem;
                     $shortest = $lev;
                 }
 
             }
             $delta++;
-            if ($shortest > -1 && $delta >= $clearedWordLength) {
+            if ($shortest > -1 && $delta >= $shortest) {
                 break;
             }
         }
