@@ -1,0 +1,15 @@
+{
+  "name": "vigo5190/bra",
+  "description": "bra",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Stanislav Gumeniuk",
+      "email": "i@vigo.su"
+    }
+  ],
+  "autoload": {
+    "psr-4": {"Vigo5190\\": "src/"}
+  }
+}
