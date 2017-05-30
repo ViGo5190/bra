@@ -37,19 +37,21 @@ class StringArrayVsStringSmartDistanceCalculatorTest extends \PHPUnit_Framework_
         $this->assertEquals(0, $dc->getDistance('AAAA'));
     }
 
-//    public function testGetDistance3()
-//    {
-//        $storage = new Vigo5190\Vocabulary\SmartStorage();
-//
-//        $reader = new Vigo5190\Vocabulary\FileLoader($storage);
-//
-//        $reader->setSource(__DIR__ . '/../data/vocabulary.txt')->loadWords();
-//        $dc = new Vigo5190\Levenshtein\StringArrayVsStringSmartDistanceCalculator($storage);
-//
-//        $this->assertEquals(1, $dc->getDistance('coforming'));
-//        $this->assertEquals(2, $dc->getDistance('cofrming'));
-//        $this->assertEquals(2, $dc->getDistance('miickels'));
-//        $this->assertEquals(16, $dc->getDistance('nnecmbvxauvbpmevovyzrwb'));
-//    }
+    public function testGetDistance3()
+    {
+        $storage = new Vigo5190\Vocabulary\SmartStorage();
+
+        $reader = new Vigo5190\Vocabulary\FileLoader($storage);
+
+        $reader->setSource(__DIR__ . '/../data/vocabulary.txt')->loadWords();
+        $dc = new Vigo5190\Levenshtein\StringArrayVsStringSmartDistanceCalculator($storage);
+
+        $this->assertEquals(2, $dc->getDistance('c'));
+        $this->assertEquals(2, $dc->getDistance('v'));
+        $this->assertEquals(1, $dc->getDistance('coforming'));
+        $this->assertEquals(2, $dc->getDistance('cofrming'));
+        $this->assertEquals(2, $dc->getDistance('miickels'));
+        $this->assertEquals(16, $dc->getDistance('nnecmbvxauvbpmevovyzrwb'));
+    }
 
 }
